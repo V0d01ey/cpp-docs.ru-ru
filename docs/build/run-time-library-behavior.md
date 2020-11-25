@@ -15,12 +15,12 @@ helpviewer_keywords:
 - run-time [C++], DLL startup sequence
 - DLLs [C++], startup sequence
 ms.assetid: e06f24ab-6ca5-44ef-9857-aed0c6f049f2
-ms.openlocfilehash: 2f2ffb13e6a80b144298bbf8cd76b5666a10b4dd
-ms.sourcegitcommit: c123cc76bb2b6c5cde6f4c425ece420ac733bf70
+ms.openlocfilehash: 5af3efd733a5d682e33863b330b6a558e824c9b3
+ms.sourcegitcommit: 6284bca6549e7b4f199d4560c30df6c1278bd4a0
 ms.translationtype: HT
 ms.contentlocale: ru-RU
-ms.lasthandoff: 04/14/2020
-ms.locfileid: "81335663"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95782983"
 ---
 # <a name="dlls-and-visual-c-run-time-library-behavior"></a>Библиотеки DLL и поведение библиотеки времени выполнения Visual C++
 
@@ -108,13 +108,13 @@ extern "C" BOOL WINAPI DllMain (
 
 Обычная библиотека DLL MFC может отслеживать нескольких потоков, вызывая [TlsAlloc](/windows/win32/api/processthreadsapi/nf-processthreadsapi-tlsalloc) и [TlsGetValue](/windows/win32/api/processthreadsapi/nf-processthreadsapi-tlsgetvalue) в своей функции `InitInstance`. Эти функции позволяют библиотеке DLL отслеживать данные конкретного потока.
 
-Если в обычной библиотеке DLL MFC, которая динамически связывается с MFC, используется поддержка MFC OLE, базы данных MFC (или DAO) или сокетов MFC, соответственно, отладочные библиотеки DLL расширения MFC MFCO*версия*D.dll, MFCD*версия*D.dll и MFCN*версия*D.dll (где *версия* — номер версии) связываются автоматически. Необходимо вызвать одну из следующих стандартных функций инициализации для каждой из этих библиотек DLL, используемых в `CWinApp::InitInstance` обычной библиотеки DLL MFC.
+Если в обычной библиотеке DLL MFC, которая динамически связывается с MFC, используется поддержка MFC OLE, базы данных MFC (или DAO) или сокетов MFC, соответственно, отладочные библиотеки DLL расширения MFC MFCO *версия* D.dll, MFCD *версия* D.dll и MFCN *версия* D.dll (где *версия* — номер версии) связываются автоматически. Необходимо вызвать одну из следующих стандартных функций инициализации для каждой из этих библиотек DLL, используемых в `CWinApp::InitInstance` обычной библиотеки DLL MFC.
 
 |Тип поддержки MFC|Вызываемая функция инициализации|
 |-------------------------|-------------------------------------|
-|MFC OLE (MFCO*версия*D.dll)|`AfxOleInitModule`|
-|База данных MFC (MFCO*версия*D.dll)|`AfxDbInitModule`|
-|Сокеты MFC (MFCO*версии*D.dll)|`AfxNetInitModule`|
+|MFC OLE (MFCO *версия* D.dll)|`AfxOleInitModule`|
+|База данных MFC (MFCO *версия* D.dll)|`AfxDbInitModule`|
+|Сокеты MFC (MFCO *версии* D.dll)|`AfxNetInitModule`|
 
 <a name="initializing-extension-dlls"></a>
 
@@ -133,7 +133,7 @@ extern "C" BOOL WINAPI DllMain (
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-static AFX_EXTENSION_MODULE PROJNAMEDLL = { NULL, NULL };
+static AFX_EXTENSION_MODULE PROJNAMEDLL;
 
 extern "C" int APIENTRY
 DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
